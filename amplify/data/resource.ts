@@ -12,6 +12,10 @@ const schema = a.schema({
       content: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
+  OwnerTodo: a.model({
+    content: a.string(),
+    completed: a.boolean()
+  }).authorization((allow) => [allow.owner()])
 });
 
 export type Schema = ClientSchema<typeof schema>;
